@@ -1,0 +1,33 @@
+{
+	"": {
+		"prefix": "gcd_snippet",
+		"body": [
+		  "ll gcd(ll a, ll b) {",
+		  "    if (a == 0)",
+		  "        return b;",
+		  "    if (b == 0)",
+		  "        return a;",
+		  "",
+		  "    // If both a and b are even",
+		  "    if ((a & 1) == 0 && (b & 1) == 0)",
+		  "        return gcd(a >> 1, b >> 1) << 1;",
+		  "",
+		  "    // If a is even, b is odd",
+		  "    if ((a & 1) == 0)",
+		  "        return gcd(a >> 1, b);",
+		  "",
+		  "    // If a is odd, b is even",
+		  "    if ((b & 1) == 0)",
+		  "        return gcd(a, b >> 1);",
+		  "",
+		  "    // If both are odd and a > b",
+		  "    if (a > b)",
+		  "        return gcd(a - b, b);",
+		  "",
+		  "    // If both are odd and b >= a",
+		  "    return gcd(a, b - a);",
+		  "}"
+		],
+		"description": ""
+	  }
+}

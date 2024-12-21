@@ -1,0 +1,31 @@
+{
+	"": {
+		"prefix": "highLowPrime_snippet",
+		"body": [
+		  "const int N = 1e7 + 10;",
+		  "vector<bool> is_prime(N, 1);",
+		  "vector<ll> lp(N, 0), hp(N, 0);",
+		  "void highLowPrime()",
+		  "{",
+		  "    is_prime[0] = is_prime[1] = false;",
+		  "    for (ll i = 2; i * i < N; i++)",
+		  "    {",
+		  "        if (is_prime[i])",
+		  "        {",
+		  "            lp[i] = hp[i] = i;",
+		  "            for (ll j = 2 * i; j < N; j += i)",
+		  "            {",
+		  "                is_prime[j] = false;",
+		  "                hp[j] = i;",
+		  "                if (!lp[j])",
+		  "                {",
+		  "                    lp[j] = i;",
+		  "                }",
+		  "            }",
+		  "        }",
+		  "    }",
+		  "}"
+		],
+		"description": ""
+	  }
+}

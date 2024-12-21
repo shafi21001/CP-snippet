@@ -1,0 +1,52 @@
+{
+	// Place your snippets for cpp here. Each snippet is defined under a snippet name and has a prefix, body and 
+	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+	// same ids are connected.
+	// Example:
+    "CPP": {
+        "prefix": "cpp_boilerplate",
+        "body": [
+          "#include <bits/stdc++.h>",
+          "using namespace std;",
+          // "#define endl '\\n'",
+          "typedef long long ll;",
+          // "const double pi = acos(-1.0);",
+          // "const ll M = 1e9 + 7;",
+          // "using vec = vector<ll>;",
+          // "#define pb push_back",
+          // "#define all(v) (v).begin(), (v).end()",
+          "",
+          "void soln()",
+          "{",
+          "    ll n;",
+          "    cin >> n;",
+          "    vector<ll> vc(n);",
+          "    for (int i = 0; i < n; i++)",
+          "    {",
+          "        cin >> vc[i];",
+          "    }",
+          "}",
+          "",
+          "int32_t main()",
+          "{",
+          "    ios_base::sync_with_stdio(0);",
+          "    cin.tie(0);",
+          // "    cout.tie(0);",
+          // "",
+// 
+          // "    freopen("name.in", "r", stdin);",
+          // "    freopen("name.out", "w", stdout);",
+          "    int t;",
+          "    cin >> t;",
+          "    for (int c = 1; c <= t; c++)",
+          "    {",
+          "        soln();",
+          "    }",
+          // "",
+          "    return 0;",
+          "}"
+        ],
+        "description": ""
+      }
+}
