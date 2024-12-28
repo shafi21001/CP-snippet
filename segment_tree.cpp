@@ -64,7 +64,7 @@ void soln()
     vector<ll> seg(n * 4);
     build(0, 0, n - 1, vc, seg);
 
-    while (q--)
+   while (q--)
     {
         ll typ;
         cin >> typ;
@@ -72,14 +72,14 @@ void soln()
         {
             ll l, r;
             cin >> l >> r;
-            cout << query(0, 0, n - 1, l, r, seg) << endl;
+            cout << query(0, 0, n - 1, l - 1, r - 1, seg) << endl;
         }
         else
         {
             ll i, val;
             cin >> i >> val;
-            update(0, 0, n - 1, i, val, seg);
-            vc[i] = val;
+            update(0, 0, n - 1, i - 1, val, seg);
+            vc[i - 1] = val;
         }
     }
 }
