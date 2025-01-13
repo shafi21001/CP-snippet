@@ -1,7 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
-const ll M = 1e9 + 7;
 
 void build(ll ind, ll lo, ll hi, vector<ll> &v, vector<ll> &seg)
 {
@@ -10,7 +9,7 @@ void build(ll ind, ll lo, ll hi, vector<ll> &v, vector<ll> &seg)
         seg[ind] = v[lo];
         return;
     }
-    int mid = (lo + hi) / 2;
+    ll mid = (lo + hi) / 2;
     build(2 * ind + 1, lo, mid, v, seg);
     build(2 * ind + 2, mid + 1, hi, v, seg);
     seg[ind] = seg[2 * ind + 1] + seg[2 * ind + 2];
@@ -23,8 +22,8 @@ ll query(ll ind, ll lo, ll hi, ll l, ll r, vector<ll> &seg, vector<ll> &lzy)
         seg[ind] += ((hi - lo + 1) * lzy[ind]);
         if (hi != lo)
         {
-            lzy[2 * ind + 1] = lzy[ind];
-            lzy[2 * ind + 2] = lzy[ind];
+            lzy[2 * ind + 1] += lzy[ind];
+            lzy[2 * ind + 2] += lzy[ind];
         }
         lzy[ind] = 0;
     }
@@ -49,8 +48,8 @@ void lazyUpdate(ll ind, ll lo, ll hi, ll l, ll r, ll val, vector<ll> &seg, vecto
         seg[ind] += ((hi - lo + 1) * lzy[ind]);
         if (hi != lo)
         {
-            lzy[2 * ind + 1] = lzy[ind];
-            lzy[2 * ind + 2] = lzy[ind];
+            lzy[2 * ind + 1] += lzy[ind];
+            lzy[2 * ind + 2] += lzy[ind];
         }
         lzy[ind] = 0;
     }
@@ -70,7 +69,7 @@ void lazyUpdate(ll ind, ll lo, ll hi, ll l, ll r, ll val, vector<ll> &seg, vecto
         }
         return;
     }
-    int mid = (lo + hi) / 2;
+    ll mid = (lo + hi) / 2;
     lazyUpdate(2 * ind + 1, lo, mid, l, r, val, seg, lzy);
     lazyUpdate(2 * ind + 2, mid + 1, hi, l, r, val, seg, lzy);
     seg[ind] = seg[2 * ind + 1] + seg[2 * ind + 2];
@@ -81,7 +80,7 @@ void soln()
     ll n, q;
     cin >> n >> q;
     vector<ll> vc(n);
-    for (int i = 0; i < n; i++)
+    for (ll i = 0; i < n; i++)
     {
         cin >> vc[i];
     }
