@@ -15,63 +15,56 @@ void build(ll ind, ll lo, ll hi, vector<ll> &v, vector<ll> &seg)
     seg[ind] = seg[2 * ind + 1] + seg[2 * ind + 2];
 }
 
-ll query(ll ind, ll lo, ll hi, ll l, ll r, vector<ll> &seg, vector<ll> &lzy)
+void propagate(ll ind, ll lo, ll hi, vector<ll> &seg, vector<ll> &lazy)
 {
-    if (lzy[ind] != 0)
+    if (lazy[ind] != 0)
     {
-        seg[ind] += ((hi - lo + 1) * lzy[ind]);
-        if (hi != lo)
+        seg[ind] += (hi - lo + 1) * lazy[ind];
+        if (lo != hi)
         {
-            lzy[2 * ind + 1] += lzy[ind];
-            lzy[2 * ind + 2] += lzy[ind];
+            lazy[2 * ind + 1] += lazy[ind];
+            lazy[2 * ind + 2] += lazy[ind];
         }
-        lzy[ind] = 0;
+        lazy[ind] = 0;
     }
+}
+
+ll query(ll ind, ll lo, ll hi, ll l, ll r, vector<ll> &seg, vector<ll> &lazy)
+{
+    propagate(ind, lo, hi, seg, lazy);
+
     if (r < lo || l > hi)
-    {
         return 0;
-    }
     if (lo >= l && hi <= r)
-    {
         return seg[ind];
-    }
+
     ll mid = (lo + hi) / 2;
-    ll left = query(2 * ind + 1, lo, mid, l, r, seg, lzy);
-    ll right = query(2 * ind + 2, mid + 1, hi, l, r, seg, lzy);
+    ll left = query(2 * ind + 1, lo, mid, l, r, seg, lazy);
+    ll right = query(2 * ind + 2, mid + 1, hi, l, r, seg, lazy);
     return left + right;
 }
 
-void lazyUpdate(ll ind, ll lo, ll hi, ll l, ll r, ll val, vector<ll> &seg, vector<ll> &lzy)
+void lazyUpdate(ll ind, ll lo, ll hi, ll l, ll r, ll val, vector<ll> &seg, vector<ll> &lazy)
 {
-    if (lzy[ind] != 0)
-    {
-        seg[ind] += ((hi - lo + 1) * lzy[ind]);
-        if (hi != lo)
-        {
-            lzy[2 * ind + 1] += lzy[ind];
-            lzy[2 * ind + 2] += lzy[ind];
-        }
-        lzy[ind] = 0;
-    }
+    propagate(ind, lo, hi, seg, lazy);
 
     if (r < lo || l > hi)
-    {
         return;
-    }
 
     if (lo >= l && hi <= r)
     {
-        seg[ind] += ((hi - lo + 1) * val);
-        if (hi != lo)
+        seg[ind] += (hi - lo + 1) * val;
+        if (lo != hi)
         {
-            lzy[2 * ind + 1] += val;
-            lzy[2 * ind + 2] += val;
+            lazy[2 * ind + 1] += val;
+            lazy[2 * ind + 2] += val;
         }
         return;
     }
+
     ll mid = (lo + hi) / 2;
-    lazyUpdate(2 * ind + 1, lo, mid, l, r, val, seg, lzy);
-    lazyUpdate(2 * ind + 2, mid + 1, hi, l, r, val, seg, lzy);
+    lazyUpdate(2 * ind + 1, lo, mid, l, r, val, seg, lazy);
+    lazyUpdate(2 * ind + 2, mid + 1, hi, l, r, val, seg, lazy);
     seg[ind] = seg[2 * ind + 1] + seg[2 * ind + 2];
 }
 
@@ -85,7 +78,7 @@ void soln()
         cin >> vc[i];
     }
 
-    vector<ll> seg(n * 4);
+    vector<ll> seg(n * 4, 0);
     vector<ll> lazy(n * 4, 0);
     build(0, 0, n - 1, vc, seg);
 
