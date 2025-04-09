@@ -1,0 +1,31 @@
+{
+	"": {
+		"prefix": "euler_totient_snippet",
+		"body": [
+		  "const ll N = 1e7 + 2;",
+		  "ll totient[N];",
+		  "",
+		  "void etf()",
+		  "{",
+		  "    for (ll i = 0; i < N; i++)",
+		  "    {",
+		  "        totient[i] = i;",
+		  "    }",
+		  "",
+		  "    for (ll i = 2; i < N; i++)",
+		  "    {",
+		  "        if (totient[i] == i)",
+		  "        {",
+		  "            for (ll j = 2 * i; j < N; j += i)",
+		  "            {",
+		  "                totient[j] *= i - 1;",
+		  "                totient[j] /= i;",
+		  "            }",
+		  "            totient[i] = i - 1;",
+		  "        }",
+		  "    }",
+		  "}"
+		],
+		"description": ""
+	  }
+}
