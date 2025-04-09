@@ -1,0 +1,19 @@
+{
+	"": {
+		"prefix": "permute_snippet",
+		"body": [
+		  "void AllPermutations(ll n)",
+		  "{",
+		  "    string number = to_string(n);",
+		  "",
+		  "    sort(number.begin(), number.end());",
+		  "",
+		  "    do",
+		  "    {",
+		  "        cout << number << endl;",
+		  "    } while (next_permutation(number.begin(), number.end()));",
+		  "}"
+		],
+		"description": ""
+	  }
+}
