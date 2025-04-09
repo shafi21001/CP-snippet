@@ -1,0 +1,36 @@
+{
+	"": {
+		"prefix": "bfs_snippet",
+		"body": [
+		  "const ll N = 1e5 + 5;",
+		  "vector<ll> adj[N];",
+		  "vector<bool> vis(N, 0);",
+		  "vector<ll> level(N, 0);",
+		  "",
+		  "void bfs(ll v)",
+		  "{",
+		  "    queue<ll> qq;",
+		  "    qq.push(v);",
+		  "    vis[v] = 1;",
+		  "",
+		  "    while (!qq.empty())",
+		  "    {",
+		  "        ll k = qq.front();",
+		  "        qq.pop();",
+		  "        //cout << k << endl;",
+		  "        for (ll a : adj[k])",
+		  "        {",
+		  "            if (vis[a])",
+		  "            {",
+		  "                continue;",
+		  "            }",
+		  "            qq.push(a);",
+		  "            vis[a] = 1;",
+		  "            level[a] = level[k] + 1;",
+		  "        }",
+		  "    }",
+		  "}"
+		],
+		"description": ""
+	  }
+}
